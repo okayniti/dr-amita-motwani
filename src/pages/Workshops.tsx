@@ -1,19 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
 import { ArrowUpRight, Sparkles, Brain, Compass, Anchor, Crown, Heart, GraduationCap, Building2 } from "lucide-react";
-
-export const Route = createFileRoute("/workshops")({
-  head: () => ({
-    meta: [
-      { title: "Signature Workshops — Dr. Amita Motwani" },
-      { name: "description", content: "Executive workshops on emotional governance, leadership, relationships, and social intelligence for organizations and institutions." },
-    ],
-    links: [{ rel: "canonical", href: "/workshops" }],
-  }),
-  component: WorkshopsPage,
-});
 
 function Label({ children }: { children: string }) {
   return (
@@ -61,7 +50,11 @@ const tracks = [
   },
 ];
 
-function WorkshopsPage() {
+export default function WorkshopsPage() {
+  useEffect(() => {
+    document.title = "Signature Workshops — Dr. Amita Motwani";
+  }, []);
+
   return (
     <SiteLayout>
       {/* HERO */}

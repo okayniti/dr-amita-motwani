@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Instagram, Linkedin, Youtube, Mail, Phone } from "lucide-react";
 
 export function Footer() {
@@ -59,8 +59,8 @@ export function Footer() {
 
         <div className="mt-16 text-center">
           <p className="font-serif text-2xl italic leading-relaxed text-foreground md:text-3xl text-balance">
-            “Emotional command is the highest form of power. <br className="hidden md:block" />
-            Inner stability is the real luxury.”
+            "Emotional command is the highest form of power. <br className="hidden md:block" />
+            Inner stability is the real luxury."
           </p>
           <p className="mt-6 text-xs uppercase tracking-[0.3em] text-muted-foreground">— Dr. Amita Motwani</p>
         </div>

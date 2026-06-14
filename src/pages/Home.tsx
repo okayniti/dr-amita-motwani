@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
 import heroPortrait from "@/assets/amita-formal.png";
@@ -22,17 +23,6 @@ import {
   Mail,
   Phone,
 } from "lucide-react";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Dr. Amita Motwani — Emotional Governance & Luxury Coaching" },
-      { name: "description", content: "Master your inner world. Command your outer reality. Premium psychology, relationship coaching, and emotional governance for individuals and leaders." },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-  component: HomePage,
-});
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -66,7 +56,11 @@ function GhostButton({ to, children }: { to: string; children: React.ReactNode }
   );
 }
 
-function HomePage() {
+export default function HomePage() {
+  useEffect(() => {
+    document.title = "Dr. Amita Motwani — Emotional Governance & Luxury Coaching";
+  }, []);
+
   return (
     <SiteLayout>
       {/* HERO */}

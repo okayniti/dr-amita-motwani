@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
@@ -34,14 +34,18 @@ export function Header() {
         </Link>
         <nav className="hidden items-center gap-10 md:flex">
           {nav.map((n) => (
-            <Link
+            <NavLink
               key={n.to}
               to={n.to}
-              activeOptions={{ exact: true }}
-              className="relative text-[13px] uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-foreground"
+              end={n.to === "/"}
+              className={({ isActive }) =>
+                `relative text-[13px] uppercase tracking-[0.2em] transition-colors hover:text-foreground ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                }`
+              }
             >
               {n.label}
-            </Link>
+            </NavLink>
           ))}
           <Link
             to="/contact"

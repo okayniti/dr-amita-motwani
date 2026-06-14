@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
 import {
@@ -16,21 +16,6 @@ import {
   Clock,
   ShieldCheck,
 } from "lucide-react";
-
-export const Route = createFileRoute("/programs")({
-  head: () => ({
-    meta: [
-      { title: "Programs & Pricing — Dr. Amita Motwani" },
-      {
-        name: "description",
-        content:
-          "Premium workshops and immersive transformation programs in emotional governance — from accessible community sessions to deep multi-day retreats and corporate intensives.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "/programs" }],
-  }),
-  component: ProgramsPage,
-});
 
 /* ————————————————————— Atoms ————————————————————— */
 
@@ -104,7 +89,11 @@ function TrustRow() {
 
 /* ————————————————————— Page ————————————————————— */
 
-function ProgramsPage() {
+export default function ProgramsPage() {
+  useEffect(() => {
+    document.title = "Programs & Pricing — Dr. Amita Motwani";
+  }, []);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -121,7 +110,7 @@ function ProgramsPage() {
               immersions for individuals, leaders, and institutions.
             </p>
             <p className="mt-10 font-serif text-xl italic text-foreground/70">
-              “Transformation begins the moment awareness deepens.”
+              "Transformation begins the moment awareness deepens."
             </p>
             <TrustRow />
           </Reveal>
@@ -313,7 +302,7 @@ function ProgramsPage() {
 
                   <div className="my-7 hairline" />
 
-                  {/* Price block — fixed height for alignment */}
+                  {/* Price block */}
                   <div className="min-h-[110px]">
                     <p className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">
                       Investment
@@ -329,7 +318,7 @@ function ProgramsPage() {
                     </p>
                   </div>
 
-                  {/* Outcomes — flex-grow so CTA aligns */}
+                  {/* Outcomes */}
                   <ul className="mt-2 flex-1 space-y-3">
                     {card.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80">
@@ -339,7 +328,7 @@ function ProgramsPage() {
                     ))}
                   </ul>
 
-                  {/* CTA — pinned bottom */}
+                  {/* CTA */}
                   <div className="pt-10">
                     <PrimaryCTA to="/contact" variant={card.featured ? "solid" : "outline"}>
                       {card.cta}
@@ -438,7 +427,7 @@ function ProgramsPage() {
               <Reveal key={i} delay={i * 100}>
                 <figure className="flex h-full flex-col rounded-2xl border border-border bg-background p-10">
                   <blockquote className="font-serif text-2xl italic leading-snug text-foreground">
-                    “{t.q}”
+                    "{t.q}"
                   </blockquote>
                   <figcaption className="mt-auto pt-8 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
                     — {t.a}

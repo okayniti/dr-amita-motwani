@@ -1,21 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
 import { Mail, Phone } from "lucide-react";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — Dr. Amita Motwani" },
-      { name: "description", content: "Schedule a session or enquire for workshops with Dr. Amita Motwani." },
-    ],
-    links: [{ rel: "canonical", href: "/contact" }],
-  }),
-  component: ContactPage,
-});
+export default function ContactPage() {
+  useEffect(() => {
+    document.title = "Contact — Dr. Amita Motwani";
+  }, []);
 
-function ContactPage() {
   const [sent, setSent] = useState(false);
   return (
     <SiteLayout>

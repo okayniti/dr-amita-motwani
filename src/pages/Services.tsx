@@ -1,19 +1,9 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
-import { ContactBlock } from "./index";
+import { ContactBlock } from "@/pages/Home";
 import { Users, Heart, Baby, Home as HomeIcon, Leaf, ShieldCheck, ArrowUpRight } from "lucide-react";
-
-export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Counseling Services — Dr. Amita Motwani" },
-      { name: "description", content: "Premium counseling and therapeutic services—individual, couples, family, teens, grief, and habit support." },
-    ],
-    links: [{ rel: "canonical", href: "/services" }],
-  }),
-  component: ServicesPage,
-});
 
 const services = [
   {
@@ -60,7 +50,11 @@ const services = [
   },
 ];
 
-function ServicesPage() {
+export default function ServicesPage() {
+  useEffect(() => {
+    document.title = "Counseling Services — Dr. Amita Motwani";
+  }, []);
+
   return (
     <SiteLayout>
       {/* HERO */}

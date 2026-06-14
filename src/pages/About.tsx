@@ -1,20 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { SiteLayout } from "@/components/site/Layout";
 import { Reveal } from "@/components/site/Reveal";
 import aboutPortrait from "@/assets/amita-warm.png";
 import heroPortrait from "@/assets/amita-formal.png";
 import { Anchor, Brain, Compass, Mountain, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
-
-export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Dr. Amita Motwani" },
-      { name: "description", content: "Psychologist and Emotional Governance Specialist translating deep psychological insight into practical transformation." },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
-  component: AboutPage,
-});
 
 function Label({ children }: { children: string }) {
   return (
@@ -24,7 +14,20 @@ function Label({ children }: { children: string }) {
   );
 }
 
-function AboutPage() {
+function Stat({ n, l }: { n: string; l: string }) {
+  return (
+    <div>
+      <p className="font-serif text-3xl text-accent md:text-4xl">{n}</p>
+      <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{l}</p>
+    </div>
+  );
+}
+
+export default function AboutPage() {
+  useEffect(() => {
+    document.title = "About — Dr. Amita Motwani";
+  }, []);
+
   return (
     <SiteLayout>
       {/* HERO */}
@@ -177,7 +180,7 @@ function AboutPage() {
           <Reveal className="lg:col-span-7">
             <Label>A Personal Note</Label>
             <p className="mt-8 font-serif text-3xl leading-snug text-foreground md:text-4xl text-balance">
-              “The most powerful work I do is not loud. It is the slow, careful return to oneself—one honest conversation at a time. If something inside you is asking for change, that is already the beginning.”
+              "The most powerful work I do is not loud. It is the slow, careful return to oneself—one honest conversation at a time. If something inside you is asking for change, that is already the beginning."
             </p>
             <p className="mt-8 text-xs uppercase tracking-[0.3em] text-muted-foreground">— Dr. Amita Motwani</p>
             <div className="mt-12">
@@ -197,14 +200,5 @@ function AboutPage() {
         </div>
       </section>
     </SiteLayout>
-  );
-}
-
-function Stat({ n, l }: { n: string; l: string }) {
-  return (
-    <div>
-      <p className="font-serif text-3xl text-accent md:text-4xl">{n}</p>
-      <p className="mt-2 text-[11px] uppercase tracking-[0.25em] text-muted-foreground">{l}</p>
-    </div>
   );
 }
